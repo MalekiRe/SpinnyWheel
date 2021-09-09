@@ -11,6 +11,54 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+	mavenCentral()
+	mavenLocal()
+	maven {
+		name = "BuildCraft"
+		url = "https://mod-buildcraft.com/maven"
+		content {
+			includeGroup "alexiil.mc.lib"
+		}
+	}
+	maven {
+		url = 'https://jitpack.io'
+		content {
+			includeGroup 'com.github.DimensionalDevelopment'
+			includeGroup 'com.github.Draylar'
+			includeGroup('com.github.Maleks-Modding-Studios')
+		}
+	}
+	maven { url = 'https://maven.jamieswhiteshirt.com/libs-release/' }
+	maven { url = 'https://maven.fabricmc.net/' }
+	maven { url = 'https://hephaestus.dev/release' }
+	maven { url = 'https://www.cursemaven.com'
+		content {
+			includeGroup 'curse.maven'
+		}
+	}
+	maven { url = 'https://server.bbkr.space/artifactory/libs-release'
+		content {
+			includeGroup 'io.github.cottonmc'
+		}
+	}
+	maven { url = 'https://ladysnake.jfrog.io/artifactory/mods' }
+	maven { url = 'https://maven.shedaniel.me/' }
+	maven { url = 'https://bai.jfrog.io/artifactory/maven' }
+	// Changed because maven went down
+	maven { url = 'https://maven.quiltmc.org/repository/release/' }
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
+	maven {
+		name "Siphalor's Maven"
+		url "https://maven.siphalor.de"
+	}
+	repositories {
+		maven { url 'https://maven.blamejared.com' }
+	}
+	maven { url = "https://hephaestus.dev/release" }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -26,7 +74,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
+	modImplementation("software.bernie.geckolib:geckolib-fabric-1.17:${project.geckolib_version}:dev")
+	modImplementation "dev.monarkhes:myron:1.6.0"
+	include "dev.monarkhes:myron:1.6.1-1.17.1"
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }
