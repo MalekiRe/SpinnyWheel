@@ -2,5 +2,5 @@
 newmtl m0
 ambient_occlusion true # test 2
 uvlock true # test 3
-texture minecraft:block/stone
-map_Kd minecraft:block/stone
+map_Kd spinny:models/misc/texture.png
+texture spinny:models/misc/texture.png
