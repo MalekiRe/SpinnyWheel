@@ -3,5 +3,4 @@ newmtl m0
 ambient_occlusion true # test 2
 uvlock true # test 3
 texture minecraft:block/stone
-
-newmtl none
+map_Kd minecraft:block/stone
