@@ -11,6 +11,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -18,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
@@ -28,6 +31,8 @@ public class ClockworkBlock extends HorizontalFacingBlock implements BlockEntity
     }
     static int ticker = 0;
     static int sounder = 0;
+    static int tickerFinal = 50;
+    static float randomAngelOffset = 0.0f;
     public static BooleanProperty ON = BooleanProperty.of("on");
 
     @Override
@@ -37,24 +42,24 @@ public class ClockworkBlock extends HorizontalFacingBlock implements BlockEntity
 
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING);
         builder.add(ON);
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlayerFacing().getOpposite());
+        return getDefaultState();
     }
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        Direction direction = hit.getSide();
-        Direction direction1 = state.get(HORIZONTAL_FACING);
-        if(direction == direction1){
+//        Direction direction = hit.getSide();
+//        Direction direction1 = state.get(HORIZONTAL_FACING);
+//        if(direction == direction1){
+        Random random = new Random();
+        tickerFinal = (random.nextInt(200)+80);
+        randomAngelOffset = random.nextFloat()*360;
+        SpinnyBlockEntityRenderer.multiply = random.nextInt(100)+10;
             world.setBlockState(pos, state.with(ON, true));
             return ActionResult.SUCCESS;
-        }
-        return ActionResult.PASS;
     }
     @Override
     @Nullable
@@ -66,12 +71,13 @@ public class ClockworkBlock extends HorizontalFacingBlock implements BlockEntity
         SoundEvent soundEventClick = SoundEvents.BLOCK_LEVER_CLICK;
         sounder++;
         if(sounder >= 10){
-            world.playSound(null, blockPos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.4F, 1.75F);
+            //world.playSound(null, blockPos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.4F, 1.75F);
             sounder=0;
         }
+        Random random = new Random();
         if(blockState.get(ON)){
             ticker ++;
-            if(ticker >= 20){
+            if(ticker+random.nextInt(30)+3 >= tickerFinal){
                 ticker=0;
                 world.setBlockState(blockPos, blockState.with(ON, false));
             }

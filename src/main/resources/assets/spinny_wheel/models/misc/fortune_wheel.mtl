@@ -1,6 +1,3 @@
 # Made in Blockbench 3.9.3
-newmtl m0
-ambient_occlusion true # test 2
-uvlock true # test 3
+newmtl m_0
 map_Kd spinny_wheel:misc/texture
-texture spinny_wheel:misc/texture
