@@ -16,7 +16,7 @@ import net.minecraft.util.math.Vec3f;
 import java.util.Random;
 
 public class SpinnyBlockEntityRenderer<T extends ClockworkBlockEntity> implements BlockEntityRenderer<ClockworkBlockEntity> {
-    private static final Identifier MODEL = new Identifier("spinny", "models/misc/fortune_wheel");
+    private static final Identifier MODEL = new Identifier("spinny_wheel", "models/misc/fortune_wheel");
 
     public SpinnyBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
     }

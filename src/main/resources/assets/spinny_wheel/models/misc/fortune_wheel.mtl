@@ -2,5 +2,5 @@
 newmtl m0
 ambient_occlusion true # test 2
 uvlock true # test 3
-map_Kd spinny:models/misc/texture.png
-texture spinny:models/misc/texture.png
+map_Kd spinny_wheel:misc/texture
+texture spinny_wheel:misc/texture

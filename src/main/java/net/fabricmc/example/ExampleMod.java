@@ -18,7 +18,7 @@ public class ExampleMod implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-		Registry.register(Registry.BLOCK, new Identifier("spinny_wheel", "spinny_wheel_block"), SPINNY_WHEEL);
+		Registry.register(Registry.BLOCK, new Identifier("spinny_wheel", "spinny_wheel"), SPINNY_WHEEL);
 		CLOCKWORK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier("spinny_wheel", "spinny_wheel_block_entity"), FabricBlockEntityTypeBuilder.create(ClockworkBlockEntity::new, SPINNY_WHEEL).build(null));
 		Registry.register(Registry.ITEM, new Identifier("spinny_wheel"), new BlockItem(SPINNY_WHEEL, new FabricItemSettings().group(ItemGroup.MISC)));
 		//System.out.println("Hello Fabric world!");
